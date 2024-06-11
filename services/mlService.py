@@ -28,10 +28,6 @@ class MLService:
             remainder='passthrough'  # Leave the rest of the columns unchanged
         )
 
-        # Encode the labels
-        label_encoder = LabelEncoder()
-        result_encoded = label_encoder.fit_transform(result)
-
         # Create the pipeline
         pipeline = Pipeline(steps=[
             ('preprocessor', column_transformer),
@@ -39,7 +35,7 @@ class MLService:
         ])
 
         # Fit the model
-        pipeline.fit(characteristics, result_encoded)
+        pipeline.fit(characteristics, result)
 
         # Get the results
         prediction = pipeline.predict([answers])
@@ -53,7 +49,7 @@ class MLService:
         # Generate graph
         tree.export_graphviz(estimator, out_file='graph.dot', 
                             feature_names=pipeline.named_steps['preprocessor'].transformers_[0][1].get_feature_names_out(),
-                            class_names=label_encoder.classes_,
+                            class_names=sorted(result.unique()),
                             filled=True, rounded=True,
                             special_characters=True)
 
@@ -77,10 +73,6 @@ class MLService:
             remainder='passthrough'  # Leave the rest of the columns unchanged
         )
 
-        # Encode the labels
-        label_encoder = LabelEncoder()
-        result_encoded = label_encoder.fit_transform(result)
-
         # Create the pipeline
         pipeline = Pipeline(steps=[
             ('preprocessor', column_transformer),
@@ -88,7 +80,7 @@ class MLService:
         ])
 
         # Fit the model
-        pipeline.fit(characteristics, result_encoded)
+        pipeline.fit(characteristics, result)
 
         # Get the results
         probabilities = pipeline.predict_proba([answers])
@@ -103,7 +95,7 @@ class MLService:
         # Generate graph
         tree.export_graphviz(estimator, out_file='graph.dot', 
                             feature_names=pipeline.named_steps['preprocessor'].transformers_[0][1].get_feature_names_out(),
-                            class_names=label_encoder.classes_,
+                            class_names=sorted(result.unique()),
                             filled=True, rounded=True,
                             special_characters=True)
 
