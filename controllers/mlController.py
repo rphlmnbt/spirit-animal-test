@@ -12,7 +12,7 @@ def predict():
     json = request.json
     answers = json["answers"]
     result = ml.predict(answers)
-    return {'result': result}, 200  # return data with 200 OK
+    return {'result': result.tolist()}, 200  # return data with 200 OK
 
 
 @app.route('/ml/probability', methods=['POST'])
@@ -21,6 +21,6 @@ def predict_probability():
     json = request.json
     answers = json["answers"]
     probabilities = ml.prediction_probability(answers)
-    return {'probabilities': probabilities}, 200  # return data with 200 OK
+    return {'probabilities': probabilities.tolist()}, 200  # return data with 200 OK
 
 
