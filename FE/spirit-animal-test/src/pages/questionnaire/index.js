@@ -1,76 +1,12 @@
 import React, { useState } from "react";
 import Container from 'react-bootstrap/Container';
 import './style.css'
-import { Button, Card, Col, Form, Image, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Button, Card, Col, Form } from "react-bootstrap";
 import axios from 'axios';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import { questionArray, firstChoiceArray, secondChoiceArray, thirdChoiceArray, firstChoiceValues, secondChoiceValues, thirdChoiceValues, features } from "../../utility/constants";
 
 const Questionnaire = () => {
-  const questionArray = [
-    'What type of environment do you feel most connected to?',
-    'Which characteristic best describes you?',
-    'How do you typically approach challenges?',
-    'What role do you often find yourself playing in group settings?',
-    'When facing adversity, what is your instinctual reaction?'
-  ]
-
-  const firstChoiceArray = [
-    'Wide-open spaces, grasslands, or savannas',
-    'Leadership and strength',
-    'Head-on, with courage and assertiveness',
-    'The leader or protector',
-    'Confront it directly and fearlessly'
-  ]
-
-  const secondChoiceArray = [
-    'Woodlands, fields, or underground burrows',
-    'Determination and resilience',
-    'Tenaciously, never backing down',
-    'The steadfast supporter or the one who digs deep',
-    'Persist through it with determination and grit'
-  ]
-
-  const thirdChoiceArray = [
-    'Dense forests or mountainous regions',
-    'Intelligence and adaptability',
-    'Strategically, with wit and cunning',
-    'The observer or the one offering creative solutions',
-    'Use intellect and trickery to overcome obstacles'
-  ]
-
-  const firstChoiceValues = [
-    'grasslands',
-    'leadership',
-    'headon',
-    'leader',
-    'confront'
-  ]
-
-  const secondChoiceValues = [
-    'woodlands',
-    'determination',
-    'tenaciously',
-    'supporter',
-    'persist'
-  ]
-
-  const thirdChoiceValues = [
-    'forests',
-    'intelligence',
-    'strategically',
-    'observer',
-    'intellect'
-  ]
-
-  const features = [
-    'environment',
-    'characteristic',
-    'challenge_approach',
-    'role',
-    'adversity_reaction'
-  ]
-
   const [count, setCount] = useState(0)
   const [environment, setEnvironment] = useState('')
   const [characteristic, setCharacteristic] = useState('')
