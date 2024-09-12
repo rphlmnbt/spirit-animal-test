@@ -1,9 +1,9 @@
 {
-        "$schema": "https://json.schemastore.org/tsconfig",
-        "display": "Create React App",
-        "_version": "2.0.0",
-    
-        "compilerOptions": {
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "Spirit Animal Test",
+    "_version": "0.1.0",
+
+    "compilerOptions": {
         "lib": ["dom", "dom.iterable", "esnext"],
         "module": "esnext",
         "moduleResolution": "bundler",
